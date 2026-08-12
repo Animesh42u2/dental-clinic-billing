@@ -199,6 +199,7 @@ h2 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600
 
 /* ===================== Responsive: mobile (<=768px) ===================== */
 @media (max-width: 768px) {
+  .header { display: none; }
   .app-shell { flex-direction: column; min-height: 0; overflow-x: hidden; }
 
   .sidebar {

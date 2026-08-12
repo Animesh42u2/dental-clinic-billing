@@ -27,7 +27,7 @@ export default function App() {
             Invoice
           </NavLink>
           <NavLink to="/reminder" className={({ isActive }) => `nav-btn ${isActive ? "active" : ""}`}>
-            Follow-up Reminder
+            Follow-up
           </NavLink>
         </nav>
       </aside>
