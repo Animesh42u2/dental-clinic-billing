@@ -208,8 +208,8 @@ h2 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600
     align-items: center;
     justify-content: flex-start;
     padding: 12px 14px;
-    gap: 10px;
-    flex-wrap: nowrap;
+    gap: 8px 10px;
+    flex-wrap: wrap;   /* ← changed */
   }
 
   .sidebar-brand {
@@ -217,17 +217,15 @@ h2 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600
     line-height: 1.2;
     white-space: nowrap;
     flex-shrink: 0;
+    width: 100%;   /* ← add this line */
   }
 
   .sidebar-nav {
     flex-direction: row;
-    gap: 4px;
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+    gap: 6px;
+    flex-wrap: wrap;
+    width: 100%;
   }
-  .sidebar-nav::-webkit-scrollbar { display: none; }
 
   .nav-btn {
     padding: 7px 10px;
