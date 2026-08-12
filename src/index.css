@@ -16,10 +16,6 @@
 html, body { overflow-x: hidden; }
 body { margin: 0; font-family: 'Inter', sans-serif; background: var(--cream); color: var(--ink); }
 
-.header { padding: 18px 28px; border-bottom: 1px solid var(--line); background: #fff; }
-.brand { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 19px; color: var(--teal-900); }
-.brand-sub { font-size: 12.5px; color: #6b6555; }
-
 .main { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; padding: 28px; max-width: 1180px; margin: 0 auto; }
 @media (max-width: 860px) { .main { grid-template-columns: 1fr; } }
 
@@ -71,43 +67,29 @@ h2 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600
 .bill-words { font-style: italic; font-size: 12.5px; margin-top: 14px; border-bottom: 1px dotted var(--ink); padding-bottom: 4px; }
 
 .app-shell {
-  display: flex;
   min-height: 100vh;
 }
-.sidebar {
-  width: 210px;
-  flex-shrink: 0;
-  background: #1e291e;
-  color: #fde05a;
-  padding: 22px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+
+.header {
+  padding: 18px 28px;
+  border-bottom: 1px solid var(--line);
+  background: #fff;
 }
-.sidebar-brand {
-  font-size: 15px;
+
+.header .brand {
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
-  line-height: 1.3;
-  color: #fde05a;
-  text-decoration: none;
-}
-.sidebar-brand:visited { color: #fde05a; }
-.sidebar-nav { display: flex; flex-direction: column; gap: 6px; }
-.nav-btn {
-  text-align: left;
-  padding: 10px 12px;
-  border-radius: 8px;
-  border: none;
-  background: transparent;
-  color: #cfd6c9;
-  font-size: 13.5px;
-  cursor: pointer;
+  font-size: 19px;
+  color: var(--teal-900);
   text-decoration: none;
   display: inline-block;
 }
-.nav-btn:hover { background: rgba(253,224,90,0.08); color: #fde05a; }
-.nav-btn.active { background: #fde05a; color: #1e291e; font-weight: 600; }
-.app-shell .page { flex: 1; min-width: 0; }
+
+.brand-sub {
+  font-size: 12.5px;
+  color: #6b6555;
+  margin-top: 2px;
+}
 
 .slip {
   background: #fde05a;
@@ -199,40 +181,7 @@ h2 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600
 
 /* ===================== Responsive: mobile (<=768px) ===================== */
 @media (max-width: 768px) {
-  .header { display: none; }
-  .app-shell { flex-direction: column; min-height: 0; overflow-x: hidden; }
-
-  .sidebar {
-    width: 100%;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 12px 14px;
-    gap: 8px 10px;
-    flex-wrap: wrap;   /* ← changed */
-  }
-
-  .sidebar-brand {
-    font-size: 13px;
-    line-height: 1.2;
-    white-space: nowrap;
-    flex-shrink: 0;
-    width: 100%;   /* ← add this line */
-  }
-
-  .sidebar-nav {
-    flex-direction: row;
-    gap: 6px;
-    flex-wrap: wrap;
-    width: 100%;
-  }
-
-  .nav-btn {
-    padding: 7px 10px;
-    font-size: 12px;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
+  .app-shell { min-height: 0; overflow-x: hidden; }
 
   .main { grid-template-columns: 1fr; gap: 20px; padding: 16px; }
   .header { padding: 14px 16px; }
