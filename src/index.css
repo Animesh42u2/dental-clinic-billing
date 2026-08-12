@@ -13,6 +13,7 @@
 }
 
 * { box-sizing: border-box; }
+html, body { overflow-x: hidden; }
 body { margin: 0; font-family: 'Inter', sans-serif; background: var(--cream); color: var(--ink); }
 
 .header { padding: 18px 28px; border-bottom: 1px solid var(--line); background: #fff; }
@@ -68,6 +69,7 @@ h2 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600
 .bill-table .italic { font-style: italic; }
 .bill-table .bold { font-weight: 700; }
 .bill-words { font-style: italic; font-size: 12.5px; margin-top: 14px; border-bottom: 1px dotted var(--ink); padding-bottom: 4px; }
+
 .app-shell {
   display: flex;
   min-height: 100vh;
@@ -86,8 +88,6 @@ h2 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600
   font-size: 15px;
   font-weight: 700;
   line-height: 1.3;
-}
-.sidebar-brand {
   color: #fde05a;
   text-decoration: none;
 }
@@ -102,10 +102,12 @@ h2 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600
   color: #cfd6c9;
   font-size: 13.5px;
   cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
 }
 .nav-btn:hover { background: rgba(253,224,90,0.08); color: #fde05a; }
 .nav-btn.active { background: #fde05a; color: #1e291e; font-weight: 600; }
-.app-shell .page { flex: 1; }
+.app-shell .page { flex: 1; min-width: 0; }
 
 .slip {
   background: #fde05a;
@@ -151,11 +153,28 @@ h2 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600
 .slip-closing { border-top: 1px solid #1e291e; padding-top: 10px; }
 .slip-reschedule { font-size: 11.5px; font-style: italic; }
 .slip-signature { font-size: 12.5px; font-weight: 700; margin-top: 6px; }
+
 /* Home page */
-.main-home { display: block; max-width: 720px; margin: 40px auto; padding: 0 28px; }
+.main-home { display: block; max-width: 720px; margin: 40px auto; padding: 0 28px 8px; }
 .home { text-align: center; }
+.home-welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 8px;
+}
 .home-welcome h1 { font-family: 'Space Grotesk', sans-serif; font-size: 26px; color: var(--teal-900); margin: 0 0 6px; }
 .home-welcome p { color: #6b6555; font-size: 14.5px; margin: 0 0 32px; }
+
+.home-hero {
+  width: clamp(140px, 16vw, 200px);
+  height: clamp(140px, 16vw, 200px);
+  margin: 0 auto -12px;
+  display: flex;
+  justify-content: center;
+}
+
 .home-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .home-card {
   background: #fff; border: 1.4px solid var(--line); border-radius: 14px;
@@ -168,23 +187,6 @@ h2 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600
 .home-card-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 16px; color: var(--teal-900); }
 .home-card-sub { font-size: 12.5px; color: #6b6555; }
 
-/* Responsive shell — sidebar collapses to a top bar under 768px */
-@media (max-width: 768px) {
-  .app-shell { flex-direction: column; min-height: 0; }
-  .sidebar {
-    width: 100%;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 16px;
-    gap: 12px;
-  }
-  .sidebar-brand { font-size: 14px; cursor: pointer; }
-  .sidebar-nav { flex-direction: row; gap: 6px; }
-  .nav-btn { padding: 8px 10px; font-size: 12.5px; white-space: nowrap; }
-  .home-cards { grid-template-columns: 1fr; }
-  .main-home { padding: 0 16px; margin: 24px auto; }
-}
 /* Back button, sits full-width above the two-column grid on sub-pages */
 .page-topbar { grid-column: 1 / -1; }
 .back-btn {
@@ -195,8 +197,44 @@ h2 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600
 }
 .back-btn:hover { border-color: var(--teal-500); }
 
-/* Fuller mobile pass — stacks the two-column bits that were still rigid */
+/* ===================== Responsive: mobile (<=768px) ===================== */
 @media (max-width: 768px) {
+  .app-shell { flex-direction: column; min-height: 0; overflow-x: hidden; }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 12px 14px;
+    gap: 10px;
+    flex-wrap: nowrap;
+  }
+
+  .sidebar-brand {
+    font-size: 13px;
+    line-height: 1.2;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    gap: 4px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .sidebar-nav::-webkit-scrollbar { display: none; }
+
+  .nav-btn {
+    padding: 7px 10px;
+    font-size: 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
   .main { grid-template-columns: 1fr; gap: 20px; padding: 16px; }
   .header { padding: 14px 16px; }
   .grid-2 { grid-template-columns: 1fr; }
@@ -207,51 +245,13 @@ h2 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600
   .bill-meta { grid-template-columns: 1fr; }
   .bill-table { font-size: 11.5px; }
   .bill-table th, .bill-table td { padding: 6px; }
-}
-.main-home {
-  padding-top: 8px;   /* was 40px via the outer .main-home margin — tighten this */
-}
 
-.home-welcome {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin-bottom: 8px;
-}
+  .home-cards { grid-template-columns: 1fr; }
+  .main-home { padding: 0 16px 8px; margin: 24px auto; margin-top: 8px; }
 
-.home-hero {
-  width: clamp(200px, 34vw, 340px);
-  height: clamp(200px, 34vw, 340px);
-  margin: 0 auto -12px;  /* pull "Welcome back" up closer underneath it */
-  display: flex;
-  justify-content: center;
-}
-
-@media (max-width: 768px) {
-  .main-home { margin-top: 8px; padding-top: 0; }
   .home-hero {
     width: clamp(150px, 48vw, 220px);
     height: clamp(150px, 48vw, 220px);
     margin: 0 auto -8px;
   }
-}
-.home-hero {
-  width: clamp(140px, 16vw, 200px);
-  height: clamp(140px, 16vw, 200px);
-  margin: 0 auto -12px;
-  display: flex;
-  justify-content: center;
-}
-.nav-btn {
-  text-align: left;
-  padding: 10px 12px;
-  border-radius: 8px;
-  border: none;
-  background: transparent;
-  color: #cfd6c9;
-  font-size: 13.5px;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-block;
 }
